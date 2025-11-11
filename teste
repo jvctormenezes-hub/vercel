@@ -1,0 +1,343 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Como Achar Criptomoedas — Guia</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header class="topbar">
+    <div class="container">
+      <h1 class="logo">CryptoFinder<span>•</span></h1>
+      <nav class="nav">
+        <a href="#guia">Guia</a>
+        <a href="#recursos">Recursos</a>
+        <a href="#checklist">Checklist</a>
+        <a href="#glossario">Glossário</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="container">
+        <h2>Encontre e pesquise criptomoedas com segurança</h2>
+        <p>Passo a passo prático: onde procurar novas moedas, como verificar contratos, usar exploradores e identificar sinais de alerta.</p>
+        <div class="cta-row">
+          <a href="#guia" class="btn">Começar o guia</a>
+          <a href="#recursos" class="btn ghost">Ver recursos</a>
+        </div>
+      </div>
+    </section>
+
+    <section id="guia" class="container card">
+      <h3>Guia rápido — passos para achar uma cripto</h3>
+      <ol class="steps">
+        <li><strong>Defina objetivo:</strong> investimento de longo prazo, especulação, uso em dApp ou token de utilidade.</li>
+        <li><strong>Use agregadores:</strong> visite listas de tokens para ver volume, capitalização e pares (ex.: CoinGecko / CoinMarketCap).</li>
+        <li><strong>Verifique contrato:</strong> encontre o endereço do token e veja no explorador (Etherscan, BscScan etc.).</li>
+        <li><strong>Leia o whitepaper e roadmap:</strong> procure equipe, tokenomics e casos de uso.</li>
+        <li><strong>Analise liquidez e pares:</strong> tokens com baixa liquidez são arriscados.</li>
+        <li><strong>Cheque auditorias e código:</strong> procure contratos verificados e relatórios de audit.</li>
+        <li><strong>Monitore comunidade:</strong> canais oficiais, GitHub, Discord / Telegram e atividade social.</li>
+      </ol>
+    </section>
+
+    <section id="recursos" class="container card">
+      <h3>Recursos filtráveis</h3>
+
+      <div class="search-row">
+        <input id="search" type="search" placeholder="Pesquisar recurso (ex.: explorer, DEX, CoinGecko)" />
+        <select id="filter">
+          <option value="all">Todos</option>
+          <option value="agregador">Agregador</option>
+          <option value="exchange">Exchange</option>
+          <option value="explorador">Explorador</option>
+          <option value="dex">DEX</option>
+          <option value="ferramenta">Ferramenta</option>
+        </select>
+      </div>
+
+      <ul id="resourceList" class="resource-list">
+        <!-- Preenchido por script.js -->
+      </ul>
+
+      <p class="muted">Observação: nomes citados são exemplos comuns — sempre confirme URLs oficiais antes de acessar.</p>
+    </section>
+
+    <section id="checklist" class="container card">
+      <h3>Checklist de Due Diligence</h3>
+      <ul class="checklist">
+        <li>🔎 Endereço do contrato verificado no explorador</li>
+        <li>🧾 Whitepaper disponível e consistente</li>
+        <li>👥 Equipe ou repositório público com histórico</li>
+        <li>💧 Liquidez suficiente e pares confiáveis</li>
+        <li>🔐 Auditoria de segurança (se possível)</li>
+        <li>📈 Volume de negociação e atividade real</li>
+        <li>⚠ Sem red flags: renúncia total de propriedade, taxas ocultas, scripts de mint centralizados</li>
+      </ul>
+
+      <div class="tip">
+        <strong>Dica de segurança:</strong> nunca revele suas chaves privadas. Use wallets de hardware para quantias relevantes.
+      </div>
+    </section>
+
+    <section id="glossario" class="container card">
+      <h3>Glossário rápido</h3>
+      <dl>
+        <dt>Explorer</dt>
+        <dd>Ferramenta que permite ver transações e contratos (ex.: Etherscan).</dd>
+        <dt>DEX</dt>
+        <dd>Exchange descentralizada — trocas via smart contracts (ex.: Uniswap).</dd>
+        <dt>Liquidity pool</dt>
+        <dd>Reserva de tokens que permite que swaps ocorram sem livro de ordens centralizado.</dd>
+      </dl>
+    </section>
+
+    <section class="container footer-card">
+      <h4>Disclaimer</h4>
+      <p>Conteúdo educacional — isto não é aconselhamento financeiro. Pesquise criteriosamente antes de investir.</p>
+    </section>
+  </main>
+
+  <footer class="page-footer">
+    <div class="container">
+      <small>© <span id="year"></span> CryptoFinder • Criado para aprendizado</small>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
+:root{
+  --bg:#0b0f13;
+  --panel:#0f1720;
+  --muted:#9aa6b2;
+  --accent:#6ee7b7;
+  --accent-2:#7c5cff;
+  --text:#e6eef6;
+  --glass: rgba(255,255,255,0.03);
+  --danger:#ff6b6b;
+}
+
+*{box-sizing:border-box}
+html,body{height:100%}
+body{
+  margin:0;
+  font-family:Inter, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+  background: linear-gradient(180deg,var(--bg),#061018 140%);
+  color:var(--text);
+  -webkit-font-smoothing:antialiased;
+  -moz-osx-font-smoothing:grayscale;
+  line-height:1.45;
+}
+
+.container{
+  width: min(1100px, 92%);
+  margin: 0 auto;
+  padding: 2rem 0;
+}
+
+/* topbar */
+.topbar{
+  position:sticky;
+  top:0;
+  backdrop-filter: blur(6px);
+  background: linear-gradient(0deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
+  border-bottom: 1px solid rgba(255,255,255,0.03);
+  z-index:50;
+}
+.topbar .container{
+  display:flex;
+  gap:1rem;
+  align-items:center;
+  padding:1rem 0;
+}
+.logo{margin:0; font-size:1.1rem; letter-spacing:0.06em; color:var(--accent-2)}
+.logo span{color:var(--accent); margin-left:6px}
+
+/* nav */
+.nav{margin-left:auto; display:flex; gap:1rem}
+.nav a{color:var(--muted); text-decoration:none; font-size:0.95rem}
+.nav a:hover{color:var(--text)}
+
+/* hero */
+.hero{
+  padding:3.25rem 0;
+  background: linear-gradient(180deg, rgba(124,92,255,0.06), transparent 40%);
+  border-radius:12px;
+  margin:1.25rem auto;
+  box-shadow: 0 6px 30px rgba(2,8,23,0.6);
+}
+.hero h2{margin:0 0 .5rem; font-size:1.8rem}
+.hero p{color:var(--muted); margin:0 0 1rem; max-width:72ch}
+.cta-row{display:flex; gap:.75rem}
+.btn{
+  background:linear-gradient(90deg,var(--accent-2),var(--accent));
+  color:#021018;
+  padding:.6rem .9rem;
+  border-radius:10px;
+  text-decoration:none;
+  font-weight:600;
+}
+.btn.ghost{
+  background:transparent;
+  border:1px solid rgba(255,255,255,0.06);
+  color:var(--text);
+}
+
+/* cards */
+.card{
+  background: linear-gradient(180deg, rgba(255,255,255,0.01), rgba(255,255,255,0.00));
+  border-radius:12px;
+  margin:1rem 0;
+  padding:1.25rem;
+  border:1px solid rgba(255,255,255,0.03);
+  box-shadow: 0 10px 30px rgba(2,8,23,0.6);
+}
+
+/* steps */
+.steps{padding-left:1.1rem}
+.steps li{margin:.6rem 0}
+
+/* resources */
+.search-row{display:flex; gap:.5rem; margin-bottom:1rem}
+#search{flex:1; padding:.6rem .75rem; border-radius:8px; border:1px solid rgba(255,255,255,0.04); background:var(--glass); color:var(--text)}
+#filter{padding:.6rem; border-radius:8px; border:1px solid rgba(255,255,255,0.04); background:var(--glass); color:var(--text)}
+
+.resource-list{list-style:none; margin:0; padding:0; display:grid; grid-template-columns: repeat(auto-fit, minmax(260px,1fr)); gap:.75rem}
+.resource-item{
+  padding:.9rem;
+  border-radius:10px;
+  background: linear-gradient(180deg, rgba(255,255,255,0.01), rgba(255,255,255,0.00));
+  border:1px solid rgba(255,255,255,0.03);
+  display:flex;
+  flex-direction:column;
+  gap:.5rem;
+}
+.resource-item h4{margin:0; font-size:1rem}
+.resource-meta{font-size:.85rem; color:var(--muted)}
+.resource-actions{margin-top:auto; display:flex; gap:.5rem}
+
+/* checklist & tip */
+.checklist{display:grid; gap:.5rem}
+.tip{margin-top:1rem; padding:.8rem; border-radius:8px; background:rgba(124,92,255,0.06); color:var(--muted); border:1px solid rgba(124,92,255,0.06)}
+
+/* footer */
+.page-footer{padding:1.25rem 0; border-top:1px solid rgba(255,255,255,0.03); margin-top:1rem}
+.footer-card{display:flex; justify-content:space-between; align-items:center}
+
+/* small */
+.muted{color:var(--muted); font-size:.9rem}
+
+/* responsive */
+@media (max-width:640px){
+  .nav{display:none}
+  .hero h2{font-size:1.3rem}
+}// script.js — controla lista de recursos e busca
+const resources = [
+  { id:1, name:"CoinGecko", type:"agregador", desc:"Agregador de preços, volumes e lista de tokens." },
+  { id:2, name:"CoinMarketCap", type:"agregador", desc:"Ranking e dados de mercado." },
+  { id:3, name:"Etherscan", type:"explorador", desc:"Explorador para a blockchain Ethereum." },
+  { id:4, name:"BscScan", type:"explorador", desc:"Explorador para Binance Smart Chain." },
+  { id:5, name:"Uniswap", type:"dex", desc:"Exchange descentralizada para tokens Ethereum." },
+  { id:6, name:"PancakeSwap", type:"dex", desc:"DEX para Binance Smart Chain." },
+  { id:7, name:"DEXTools", type:"ferramenta", desc:"Ferramentas de análise de pares e liquidez." },
+  { id:8, name:"Token Sniffer", type:"ferramenta", desc:"Verificação rápida de sinais de risco (ex.: contratos padrão)." },
+  { id:9, name:"Audit Reports (ex.)", type:"ferramenta", desc:"Relatórios de auditoria do contrato (quando disponíveis)." },
+  { id:10, name:"GitHub / Repositório", type:"ferramenta", desc:"Código-fonte e histórico de commits." },
+  { id:11, name:"Exchanges Centralizadas", type:"exchange", desc:"Coinbase, Binance, Kraken — listas de tokens listados." }
+];
+
+const listEl = document.getElementById('resourceList');
+const searchInput = document.getElementById('search');
+const filterSelect = document.getElementById('filter');
+const yearEl = document.getElementById('year');
+
+// render year
+yearEl.textContent = new Date().getFullYear();
+
+// render resources
+function renderList(items){
+  listEl.innerHTML = '';
+  if(items.length === 0){
+    listEl.innerHTML = '<li class="muted">Nenhum recurso encontrado.</li>';
+    return;
+  }
+  items.forEach(r=>{
+    const li = document.createElement('li');
+    li.className = 'resource-item';
+    li.innerHTML = `
+      <h4>${r.name}</h4>
+      <div class="resource-meta">${r.type.toUpperCase()} • ${r.desc}</div>
+      <div class="resource-actions">
+        <a class="btn ghost" href="#" onclick="openInfo(${r.id});return false;">Saiba mais</a>
+      </div>
+    `;
+    listEl.appendChild(li);
+  });
+}
+
+// basic "saiba mais" modal substitute
+function openInfo(id){
+  const r = resources.find(x=>x.id===id);
+  if(!r) return;
+  // conteúdo simples — substitua por links oficiais em produção
+  alert(${r.name}\n\nTipo: ${r.type}\n\nDescrição: ${r.desc}\n\nNota: Confirme sempre o URL oficial antes de acessar.);
+}
+
+// search + filter
+function applyFilters(){
+  const q = searchInput.value.trim().toLowerCase();
+  const f = filterSelect.value;
+  let res = resources.filter(r=>{
+    const matchesFilter = (f === 'all') ? true : r.type === f;
+    const matchesQuery = !q || (r.name.toLowerCase().includes(q) || r.desc.toLowerCase().includes(q));
+    return matchesFilter && matchesQuery;
+  });
+  renderList(res);
+}
+
+// events
+searchInput.addEventListener('input', applyFilters);
+filterSelect.addEventListener('change', applyFilters);
+
+// initial render
+renderList(resources);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
